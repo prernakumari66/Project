@@ -204,32 +204,3 @@ plt.show()
 #---------------------------------------------------------------------------------------------------------------------------------
 
 
-infra_cols = [
-    'VILLAGE IS CONNECTED BY ALL WEATHER ROAD',
-    'VILLAGE HAS PRIMARY SCHOOL',
-    'VILLAGE HAS ELECTRICITY SUPPLY',
-    'VILLAGE HAS PIPED WATER SUPPLY',
-    'VILLAGE HAS HEALTH SUB-CENTRE'
-]
-
-
-infra_counts = df[infra_cols].apply(lambda x: (x == 'Yes').sum())
-
-
-labels = [col.replace("VILLAGE HAS ", "").replace("VILLAGE IS ", "").title() for col in infra_cols]
-
-
-plt.figure(figsize=(10, 6))
-bars = plt.bar(labels, infra_counts.values, color='mediumseagreen')
-plt.title('Availability of Basic Services in Villages of Manipur')
-plt.ylabel('Number of Villages')
-plt.xticks(rotation=30)
-plt.grid(axis='y', linestyle='--', alpha=0.5)
-
-
-for bar in bars:
-    height = bar.get_height()
-    plt.text(bar.get_x() + bar.get_width()/2., height + 3, '%d' % int(height), ha='center', fontsize=10)
-
-plt.tight_layout()
-plt.show()
